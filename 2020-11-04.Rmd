@@ -1,0 +1,37 @@
+---
+title: "課堂練習模版"
+author: "DubiousJr"
+date: "2020-11-04"
+output: output_format
+params:
+  id: "410973017"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+gender=character();
+gender=logical();
+school=character()
+factor()
+tital=charactor;
+```
+```{r}
+gender="女"
+school="國立臺北大學"
+tital="問 泰昇補習班打工"
+content="有在板上看到過很多北大附近補習班打工不推的
+不過好像還沒看到泰昇這間的評價
+想請問大家還可以嗎🙏"
+tags=
+timestamp=
+```
+```{r}
+photos
+""
+```
+
