@@ -1,0 +1,149 @@
+---
+title: "課堂練習模版"
+author: "DubiousJr"
+date: "2020-12-02"
+output: output_format
+params:
+  id: "410973017"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+thatsAlright <- 
+  jsonlite::fromJSON(
+    "https://www.dropbox.com/s/f3ox7rd5favr0o0/thatsAlright.json?dl=1"
+  )
+```
+
+```{r}
+View(thatsAlright)
+class(thatsAlright)
+length(thatsAlright)
+```
+
+### 字元數與字串向量長度
+```{r}
+# 字串向量長度
+length(c("I will"))
+# 每個元素值有幾個字元(包含符號與空格)
+str_length(c("I will"))
+```
+
+```{r}
+# 字串向量長度
+length(thatsAlright)
+# 每個元素值有幾個字元
+str_length(thatsAlright)
+```
+
+###切割split
+```{r}
+line67 <- thatsAlright[c(6,7)]
+line67
+
+line67<-c(line67,"And very soon,I'll")
+```
+
+```{r}
+str_split(line67, ", ") #在逗號那裡切割
+str_split(line67, ", ")->line67_split
+str(line67_split)
+```
+
+###規律探測
+
+規律：出現you字眼
+```{r}
+pattern="you" 
+```
+
+```{r}
+# 'you'是否出現在第1,2,3,...最後一句
+pick_you <- str_detect(thatsAlright, pattern="you")
+thatsAlright[pick_you]
+str_view_all(thatsAlright[pick_you],"you")
+```
+
+```{r}
+# 哪幾句有'you'出現
+whichHas_you <- str_which(thatsAlright, pattern="you")
+whichHas_you
+str_view_all(thatsAlright[whichHas_you],"you")
+```
+
+```{r}
+thatsAlright[pick_you]
+thatsAlright[whichHas_you]
+```
+
+
+```{r}
+# 只留下有出現'you'字眼的句子
+#subset=子集合
+onlyYou <- str_subset(thatsAlright, pattern="you")
+#thatsAlright 裡有出現you的
+
+length(thatsAlright)
+length(onlyYou)
+```
+
+```{r}
+pick_you
+```
+
+```{r}
+which(pick_you)
+```
+
+###str_count
+```{r}
+# 每一句有幾個"you"
+countEach_you <- str_count(thatsAlright,
+                           pattern="you")
+countEach_you
+str_view_all(
+  thatsAlright[1:10], pattern="you")
+```
+
+```{r}
+patternWithBoundary="\\byou\\b"
+#注意空格
+```
+
+```{r}
+str_view_all(
+  c("I am yours",
+    "And you?",
+    "Young and smart", 
+    "It means that you and I are lucky"),
+  pattern=patternWithBoundary
+)
+```
+
+
+####4.8.4正規表示式：目標規律描述
+```{r}
+Rmdfiles <- c("file1.Rmd", "file2.R", "file3.rmd", "file4.RMD", "myRmd.R")
+SchoolIds <- c("410973029", "410988011", "410974023","410783025","710773022","410788021","410673124","410873051","49988001")
+```
+
+```{r}
+Rmdfiles
+regexPattern="[Rr][Mm][Dd]"
+str_subset(
+  Rmdfiles, pattern=regexPattern)
+```
+
+```{r}
+SchoolIds
+
+regexPattern="[4](108|109)(73|88)"
+str_subset(
+  SchoolIds, pattern=regexPattern)
+```
+
